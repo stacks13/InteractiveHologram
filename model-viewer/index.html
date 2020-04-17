@@ -229,10 +229,10 @@
             cd = document.getElementById('countdown');
             cd.addEventListener('animationend', function () {
                 document.getElementById('cdcontainer').style.display = "none";
-                i = Math.floor(Math.random()*100)%3;
-                if(i===0){
+                z = Math.floor(Math.random()*100)%3;
+                if(z===0){
                     all[0].src = 'models/Rock/rock.gltf';
-                }else if(i===1){
+                }else if(z===1){
                     all[0].src = 'models/Scissors/scissors.gltf';
                 }else{
                     all[0].src = 'models/Paper/paper.glb';
@@ -240,23 +240,24 @@
 
                 setTimeout(function () {
                     p1 = mode(pred);
-                    console.log('timeout ' + i + p1);
-                    if((p1 === 'thumbs_up' && i === 0) || (p1 === '2_finger' && i === 1) || (p1 === '5_finger' && i === 2)){
+                    console.log('timeout ' + z + p1);
+                    if((p1 === 'thumbs_up' && z === 0) || (p1 === '2_finger' && z === 1) || (p1 === '5_finger' && z === 2)){
                         $('#status').text('Tie');
-                    }else if((p1 === 'thumbs_up' && i === 1) || (p1 === '2_finger' && i === 2) || (p1 === '5_finger' && i === 0)){
+                    }else if((p1 === 'thumbs_up' && z === 1) || (p1 === '2_finger' && z === 2) || (p1 === '5_finger' && z === 0)){
                         $('#status').text('You win');
                     }else{
                         $('#status').text('I win');
                     }
-                }, 100);
+                }, 200);
 
                 window.t = setTimeout(function () {
-                    $('#status').text('');
                     if(menu!=='rps'){
                         clearTimeout(window.t);
                         return;
                     }
                     animate_countdown();
+                    $('#status').text('');
+
                 }, 5000);
             });
         }
@@ -399,7 +400,7 @@
             // console.log(data.pred);
 
             if(menu === 'rps'){
-                $('#status').text('');
+                // $('#status').text('');
   		        return;
             }
 
