@@ -137,7 +137,7 @@
                     <td>Number</td>
                     <td>Description</td>
                 </thead>
-                <tbody>
+               	<tbody>
                     <tr>
                         <td>1</td>
                         <td>DNA Model (By Daniel Lobo)</td>
@@ -148,23 +148,19 @@
                     </tr>
                     <tr>
                         <td>3</td>
-                        <td>Nemo Model</td>
+                        <td>Rotating Jet Engine Model</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>4</td>
+                        <td>Curiosity Rover Model</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
+                        <td>5</td>
+                        <td>Covid-19 Model</td>
                     </tr>
                     <tr>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td></td>
-                        <td></td>
+                        <td>6</td>
+                        <td>Rock, paper, scissors Game</td>
                     </tr>
                 </tbody>
             </table>
@@ -189,10 +185,11 @@
                 </g>
             </svg>
         </div>
-        <h2 id="gesture" style="position: absolute; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">gesture</h2>
         <div id="chartContainer" style="position: absolute;  width:15%; height: 30%; top: 10%;" align="center"></div>
-        <h2 id="mode" style="position:absolute; top: 5%; left: 35%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
-        <h1 id="status" style="position: absolute; left: 40%; top:10%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center"></h1>
+        <h2 id="gesture_placeholder" style="position: relative; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Gesture : </h2>
+        <h2 id="gesture" style="position: absolute;left:9%; padding: 10px;; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
+        <h2 id="status_placeholder" style="position: absolute; left: 37%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Mode : </h2>
+        <h2 id="status" style="position: absolute; left: 43%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
         <a id="help" href="#" style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;"><h1>?</h1></a>
     </div>
 
@@ -529,18 +526,6 @@
   		    for (i=0; i<9; i++){
   		        window.chart.options.data[0].dataPoints[i].y = data.preds[0][i];
             }
-            // labels = [
-            //     {y: data.preds[0], label:'1_finger'},
-            //     {y: data.preds[1], label:'2_finger'},
-            //     {y: data.preds[2], label:'3_finger'},
-            //     {y: data.preds[3], label:'4_finger'},
-            //     {y: data.preds[4], label:'5_finger'},
-            //     {y: data.preds[5], label:'okay'},
-            //     {y: data.preds[6], label:'thumbs_up'},
-            //     {y: data.preds[7], label:'thumbs_down'},
-            //     {y: data.preds[8], label:'call'},
-            // ];
-            // window.chart.options.data[0].dataPoints = labels;
             window.chart.render();
         })
   		socket.on('disconnect', function(){console.log('byeo')});
