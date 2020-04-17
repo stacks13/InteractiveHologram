@@ -61,6 +61,8 @@ async def predictions(sid, data):
 	print('predictions', sid)
 	if m is not None:
 		await sio.emit('predictions', data, to=m)
+	if f is not None:
+		await sio.emit('predictions', data, to=f)
 
 
 if __name__ == '__main__':

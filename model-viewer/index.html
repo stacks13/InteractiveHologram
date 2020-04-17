@@ -116,6 +116,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
     <script type="module" src="model-viewer.js"></script>
+    <script type="module" src="canvasjs.min.js"></script>
     <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
     <div id="main">
 
@@ -189,6 +190,7 @@
             </svg>
         </div>
         <h2 id="gesture" style="position: absolute; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">gesture</h2>
+        <div id="chartContainer" style="position: absolute;  width:15%; height: 30%; top: 10%;" align="center"></div>
         <h2 id="mode" style="position:absolute; top: 5%; left: 35%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
         <h1 id="status" style="position: absolute; left: 40%; top:10%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center"></h1>
         <a id="help" href="#" style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;"><h1>?</h1></a>
@@ -333,20 +335,63 @@
         all = [
         		document.getElementById('top').children[0]
         		];
-
+        all[0].addEventListener('load', function () {
+            all[0].cameraTarget = 'auto auto auto';
+            all[0].cameraOrbit = init_position;
+        });
         var init_position = "0deg 75deg 105%";
+
+        window.onload = function () {
+
+            window.chart = new CanvasJS.Chart("chartContainer", {
+                animationEnabled: true,
+                backgroundColor: "#000",
+                axisX:{
+                    labelFontColor: "red",
+                    labelFontSize: 14,
+                },
+                axisY2:{
+                    // title: "Number of Companies"
+                    interval: 0.25,
+                    maximum: 1,
+                    minimum: 0
+
+                },
+                data: [{
+                    type: "bar",
+                    name: "companies",
+                    axisYType: "secondary",
+                    // fontColor: white,
+                    color: "#2a00ff",
+                    dataPoints: [
+                        {y: 0, label:'1_finger'},
+                        {y: 0, label:'2_finger'},
+                        {y: 0, label:'3_finger'},
+                        {y: 0, label:'4_finger'},
+                        {y: 0, label:'5_finger'},
+                        {y: 0, label:'okay'},
+                        {y: 0, label:'thumbs_up'},
+                        {y: 0, label:'thumbs_down'},
+                        {y: 0, label:'call'},
+                    ]
+                }]
+            });
+            window.chart.render();
+
+        }
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
     <script type="text/javascript">
     	var socket = io('http://localhost:8080');
+    	var initial_target_val;
   		socket.on('connect', function(){socket.emit('front');});
   		start = 0;
   		socket.on('transmit', function(data){
-  		    console.log(data.mode);
+  		    // console.log(data.mode);
 
             if(data.pred) {
-                $('#gesture').text(data.pred)
+                $('#gesture').text('Gesture: ' +  data.pred)
             }else{
                 $('#gesture').text('')
             }
@@ -354,7 +399,7 @@
                 pred.shift();
             }
             pred.push(data.pred);
-            console.log(data.pred);
+            // console.log(data.pred);
 
             if(menu === 'rps'){
                 $('#mode').text('');
@@ -371,22 +416,32 @@
             }
 
             if(data.mode===1){
-                $('#mode').text('Horizontal Rotate Mode');
+                $('#mode').text('Mode: Horizontal Rotate Mode');
             }else if(data.mode===2){
-                $('#mode').text('Vertical Rotate Mode');
+                $('#mode').text('Mode: Vertical Rotate Mode');
             }else if(data.mode===3){
-                $('#mode').text('Zoom Mode');
+                $('#mode').text('Mode: Zoom Mode');
             }else if(data.mode===4){
-                $('#mode').text('Rotate and Zoom mode');
+                $('#mode').text('Mode: Rotate and Zoom mode');
             }else if(data.mode===5){
-                $('#mode').text('Quick Rotate Mode');
+                $('#mode').text('Mode: Quick Rotate Mode');
+            }else if(data.mode===8){
+                $('#mode').text('Mode: Move XZ Mode');
+            }else if(data.mode===9){
+                $('#mode').text('Mode: Move Y Mode');
             }else{
-                $('#mode').text('Idle');
+                $('#mode').text('Mode: Idle');
             }
 
             newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
             newy = prevy = parseFloat(all[0].cameraOrbit.split(' ')[1].split('deg')[0]);
             newz = prevz = parseInt(all[0].cameraOrbit.split(' ')[2].split('%')[0]);
+
+            if(data.mode === 8 || data.mode === 9){
+                if(all[0].cameraTarget === 'auto auto auto'){
+                    initial_target_val = Math.sqrt(all[0].getCameraTarget().x**2 + all[0].getCameraTarget().y**2 + all[0].getCameraTarget().z**2);
+                }
+            }
 
   		    if(data.mode === 0){
 
@@ -409,7 +464,7 @@
                 });
             }else if(data.mode === 3 && data.z  !== 'undefined'){
                 if(data.z && data.z < 30){
-                    newz = prevz - 0.2*data.z;
+                    newz = prevz - 0.4*data.z;
                 }
                 all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
                 setTimeout(150, function () {
@@ -423,7 +478,7 @@
                     newy = prevy - data.y*0.6;
                 }
                 if(data.z && data.z < 30){
-                    newz = prevz - 0.2*data.z;
+                    newz = prevz - 0.4*data.z;
                 }
                 all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
                 setTimeout(150, function () {
@@ -440,8 +495,54 @@
                 newx = prevx + temp;
                 all[0].cameraOrbit = newx.toString() + "deg " + newy.toString() +"deg " + newz.toString() + "%";
 
+            }else if(data.mode === 8 && (data.x !== 'undefined' && data.y !== 'undefined')){
+  		        target = all[0].getCameraTarget()
+                newx = prevx = parseFloat(target.x);
+                newy = prevy = parseFloat(target.y);
+                newz = prevz = parseFloat(target.z);
+
+                if(Math.abs(data.x) < 50){
+                    newx = prevx + data.x*0.005*window.initial_target_val;
+                }
+                if(Math.abs(data.y) < 50){
+                    newz = prevz - data.y*0.005*window.initial_target_val;
+                }
+
+                all[0].cameraTarget = newx.toString() + "m " + newy.toString() +"m " + newz.toString() + "m";
+
+            }else if(data.mode === 9 && (data.y !== 'undefined')){
+  		        target = all[0].getCameraTarget()
+                newx = prevx = parseFloat(target.x);
+                newy = prevy = parseFloat(target.y);
+                newz = prevz = parseFloat(target.z);
+
+                if(Math.abs(data.y) < 50){
+                    newy = prevy - data.y*0.005*window.initial_target_val;
+                }
+
+                all[0].cameraTarget = newx.toString() + "m " + newy.toString() +"m " + newz.toString() + "m";
+
             }
   		});
+  		socket.on('predictions', function (data) {
+  		    console.log(data);
+  		    for (i=0; i<9; i++){
+  		        window.chart.options.data[0].dataPoints[i].y = data.preds[0][i];
+            }
+            // labels = [
+            //     {y: data.preds[0], label:'1_finger'},
+            //     {y: data.preds[1], label:'2_finger'},
+            //     {y: data.preds[2], label:'3_finger'},
+            //     {y: data.preds[3], label:'4_finger'},
+            //     {y: data.preds[4], label:'5_finger'},
+            //     {y: data.preds[5], label:'okay'},
+            //     {y: data.preds[6], label:'thumbs_up'},
+            //     {y: data.preds[7], label:'thumbs_down'},
+            //     {y: data.preds[8], label:'call'},
+            // ];
+            // window.chart.options.data[0].dataPoints = labels;
+            window.chart.render();
+        })
   		socket.on('disconnect', function(){console.log('byeo')});
     </script>
 </body>
