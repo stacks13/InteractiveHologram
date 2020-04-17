@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> </title>
+    <style type="text/css">
+        @import url('https://fonts.googleapis.com/css?family=Overpass+Mono:600');
+        /**, *::before, *::after {*/
+        /*    margin: 0;*/
+        /*    padding: 0;*/
+        /*    box-sizing: inherit;*/
+        /*}*/
+        /*body {*/
+        /*    display: flex;*/
+        /*    box-sizing: border-box;*/
+        /*    background-color: hsl(210, 5%, 12%);*/
+        /*}*/
+        svg {
+            margin: auto;
+            /*width: 100vmin;*/
+        }
+        g > text {
+            text-anchor: middle;
+            font-size: 400px;
+            font-family: Overpass Mono, monospace;
+            fill: hsl(210, 100%, 75%);
+            opacity: 0;
+            animation-name: opac;
+            animation-duration: 3s;
+            animation-timing-function: linear;
+            animation-iteration-count: 1;
+        }
+        g > text:nth-child(1) { animation-delay: 0s; }
+        g > text:nth-child(2) { animation-delay: 1s; }
+        g > text:nth-child(3) { animation-delay: 2s; }
+        g > text:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes opac {
+            0% { opacity: 0; }
+            7.5% { opacity: 1; }
+            10% { opacity: 1; }
+            15% { opacity: 0; }
+            100% { opacity: 0; }
+        }
+
+        body{
+            /*transform: scaleX(-1);*/
+    		margin: 0;
+            font-family: "Segoe UI";
+    	}
+        #main {
+            width: 100%;
+            height: 100%;
+            grid-area: demo;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            flex: 1;
+            display: flex;
+            border: 0px solid #555;
+            background: black;
+        }
+        
+        model-viewer {
+            width: 100%;
+            height: 100%;
+        }
+        
+        #left {
+            width: 50%;
+            height: 50%;
+            
+			margin-top: auto;
+			margin-bottom: auto; 
+			position: relative;        
+            transform: rotateZ(-90deg) translateY(50%);
+        }
+        
+        #top {
+            width: 100%;
+            height: 100%;
+        	/*margin: auto 0;*/
+        	position: absolute;
+            /*transform: translateX(50%);*/
+        }
+        
+        #bottom {
+            width: 50%;
+            height: 50%;
+
+            /*margin: auto 0;*/
+            margin-top: 50vh;
+            position: absolute;
+            transform: rotateZ(180deg) translateX(-50%);
+        }
+
+
+        
+        #right {
+            width: 50%;
+            height: 50%;
+            
+			margin-top: auto;
+			margin-bottom: auto; 
+			position: relative;        
+            transform: rotateZ(90deg) translateY(50%);
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="module" src="model-viewer.js"></script>
+    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
+    <div id="main">
+
+    	<div id="top">
+        <model-viewer src="models/apples.glb" alt="A 3D model of an astronaut" background-color="unset"></model-viewer>
+    	</div>
+
+        <div id="helptext" style="display:none; position: absolute; border-radius: 10px; width: 50%; height: 75%; left: 25%; top: 12%; background: white;">
+
+            <div id="closehelp" style="position:absolute;align-self: end; font-size: 30px; left: 95%; width: 50px; height: 50px;" >&times;</div>
+
+            <h1 align="center" style="margin-top: 20px;">Interactive Hologram</h1>
+            <b><p align="center">By</p></b>
+            <b><p align="center">Sahil Nirkhe  &  Daniel Lobo</p></b>
+
+            <table align="center" border="1" cellspacing="0" cellpadding="5">
+                <thead>
+                    <td>Number</td>
+                    <td>Description</td>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>DNA Model (By Daniel Lobo)</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Rocket Model</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Nemo Model</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+<!--            <p style="width: 100%; padding: 20px;">Textxy</p>-->
+        </div>
+
+        <div style="position: absolute; left: 40%; top: 30%; display: none;" id="cdcontainer">
+            <svg viewBox="-500 -500 1000 1000" width="100%" height="100%" preserveAspectRatio="xMidYMin slice">
+                <defs>
+                    <filter id="goo">
+                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
+                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -5" result="goo"></feColorMatrix>
+                        <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+                    </filter>
+                </defs>
+                <circle fill="hsla(0, 100%, 50%, 0.25)" cx="0" cy="0" r="300"></circle>
+                <g filter="url(#goo)" id="countdown">
+                    <text x="0" y="150">3</text>
+                    <text x="0" y="150">2</text>
+                    <text x="0" y="150">1</text>
+                    <text x="0" y="150">GO</text>
+                </g>
+            </svg>
+        </div>
+        <h2 id="gesture" style="position: absolute; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">gesture</h2>
+        <h2 id="mode" style="position:absolute; top: 5%; left: 35%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
+        <h1 id="status" style="position: absolute; left: 40%; top:10%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center"></h1>
+        <a id="help" href="#" style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;"><h1>?</h1></a>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+
+        function mode(array)
+        {
+            if(array.length == 0)
+                return null;
+            var modeMap = {};
+            var maxEl = array[0], maxCount = 1;
+            for(var i = 0; i < array.length; i++)
+            {
+                var el = array[i];
+                if(modeMap[el] == null)
+                    modeMap[el] = 1;
+                else
+                    modeMap[el]++;
+                if(modeMap[el] > maxCount)
+                {
+                    maxEl = el;
+                    maxCount = modeMap[el];
+                }
+            }
+            return maxEl;
+        }
+
+        var pred = Array(10);
+        var status = document.getElementById('status');
+
+        function animate_countdown(){
+            all[0].src = 'models/Untitled.glb';
+            document.getElementById('cdcontainer').style.display = "";
+            cd = document.getElementById('countdown');
+            cd.addEventListener('animationend', function () {
+                document.getElementById('cdcontainer').style.display = "none";
+                i = Math.floor(Math.random()*100)%3;
+                if(i===0){
+                    all[0].src = 'models/Rock/rock.gltf';
+                }else if(i===1){
+                    all[0].src = 'models/Scissors/scissors.gltf';
+                }else{
+                    all[0].src = 'models/Paper/paper.glb';
+                }
+
+                setTimeout(function () {
+                    p1 = mode(pred);
+                    console.log('timeout ' + i + p1);
+                    if((p1 === 'thumbs_up' && i === 0) || (p1 === '2_finger' && i === 1) || (p1 === '5_finger' && i === 2)){
+                        $('#status').text('Tie');
+                    }else if((p1 === 'thumbs_up' && i === 1) || (p1 === '2_finger' && i === 2) || (p1 === '5_finger' && i === 0)){
+                        $('#status').text('You win');
+                    }else{
+                        $('#status').text('I win');
+                    }
+                }, 100);
+
+                window.t = setTimeout(function () {
+                    $('#status').text('');
+                    if(menu!=='rps'){
+                        clearTimeout(window.t);
+                        return;
+                    }
+                    animate_countdown();
+                }, 5000);
+            });
+        }
+
+        document.getElementById('help').onclick = ev => {
+            document.getElementById('helptext').style.display = "";
+        };
+
+        document.getElementById('closehelp').onclick = ev => {
+            document.getElementById('helptext').style.display = 'none';
+        };
+
+        var menu = 'model';
+
+        document.addEventListener("keypress", function onEvent(event) {
+            if (event.key === "1") {
+                menu = 'model';
+                all[0].src = 'models/DNA_1.glb';
+            }else if (event.key === "2") {
+                menu = 'model';
+                all[0].src = 'models/Falcon/scene.gltf'
+            }else if (event.key === "3") {
+                menu = 'model';
+                all[0].src = 'models/Rotating jet engine.glb'
+            }else if (event.key === "4") {
+                menu = 'model';
+                all[0].src = 'models/Curiosity.glb'
+            }else if (event.key === "5") {
+                menu = 'model';
+                all[0].src = 'models/covid.glb'
+            }else if (event.key === "6") {
+                menu = 'model';
+                all[0].src = 'models/Horse.glb'
+            }else if (event.key === "7") {
+                // document.getElementById('cdcontainer').style.display = "";
+                // all[0].src = '';
+                if(menu!== 'rps') {
+                    menu = 'rps';
+                    window.animator = setInterval(function () {
+                        newx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
+                        newx += 2;
+                        all[0].cameraOrbit = newx.toString() + "deg 90deg 105%";
+                    }, 100);
+                    animate_countdown();
+                }
+                // all[0].src = 'scene.gltf'
+            }else if (event.key === "p") {
+                menu = 'model';
+                if(all[0].paused){
+                    all[0].play();
+                }else{
+                    all[0].pause();
+                }
+            }else if(event.key === "r"){
+                all[0].cameraOrbit = init_position;
+            }
+
+            if(menu === 'model'){
+                clearInterval(window.animator);
+            }
+        });
+        // bottom = $('#top').clone(true);
+        // bottom.attr('id', 'bottom');
+        // bottom.appendTo('#main');
+        //
+        // left = $('#top').clone(true);
+        // left.attr('id', 'left');
+        // left.appendTo('#main');
+        //
+        // right = $('#top').clone(true);
+        // right.attr('id', 'right');
+        // right.appendTo('#main');
+        all = [
+        		document.getElementById('top').children[0]
+        		];
+
+        var init_position = "0deg 75deg 105%";
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+    <script type="text/javascript">
+    	var socket = io('http://localhost:8080');
+  		socket.on('connect', function(){socket.emit('front');});
+  		start = 0;
+  		socket.on('transmit', function(data){
+  		    console.log(data.mode);
+
+            if(data.pred) {
+                $('#gesture').text(data.pred)
+            }else{
+                $('#gesture').text('')
+            }
+            if(pred.length === 10){
+                pred.shift();
+            }
+            pred.push(data.pred);
+            console.log(data.pred);
+
+            if(menu === 'rps'){
+                $('#mode').text('');
+  		        return;
+            }
+
+            if(mode(pred) === 'call'){
+                if(all[0].paused){
+                    all[0].play();
+                }else{
+                    all[0].pause();
+                }
+                while (pred.length) { pred.pop(); }
+            }
+
+            if(data.mode===1){
+                $('#mode').text('Horizontal Rotate Mode');
+            }else if(data.mode===2){
+                $('#mode').text('Vertical Rotate Mode');
+            }else if(data.mode===3){
+                $('#mode').text('Zoom Mode');
+            }else if(data.mode===4){
+                $('#mode').text('Rotate and Zoom mode');
+            }else if(data.mode===5){
+                $('#mode').text('Quick Rotate Mode');
+            }else{
+                $('#mode').text('Idle');
+            }
+
+            newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
+            newy = prevy = parseFloat(all[0].cameraOrbit.split(' ')[1].split('deg')[0]);
+            newz = prevz = parseInt(all[0].cameraOrbit.split(' ')[2].split('%')[0]);
+
+  		    if(data.mode === 0){
+
+            }else if(data.mode === 1 && data.x  !== 'undefined'){
+                newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
+                if(Math.abs(data.x) < 50){
+                    newx = prevx + data.x*0.6;
+                }
+                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
+                setTimeout(150, function () {
+                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz.toString() + "%";
+                });
+            }else if(data.mode === 2 && data.y  !== 'undefined'){
+                if(Math.abs(data.y) < 50){
+                    newy = prevy - data.y*0.6;
+                }
+                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
+                setTimeout(150, function () {
+                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
+                });
+            }else if(data.mode === 3 && data.z  !== 'undefined'){
+                if(data.z && data.z < 30){
+                    newz = prevz - 0.2*data.z;
+                }
+                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
+                setTimeout(150, function () {
+                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
+                });
+            }else if(data.mode === 4 && data.x !== 'undefined'){
+                if(Math.abs(data.x) < 50){
+                    newx = prevx + data.x*0.6;
+                }
+                if(Math.abs(data.y) < 50){
+                    newy = prevy - data.y*0.6;
+                }
+                if(data.z && data.z < 30){
+                    newz = prevz - 0.2*data.z;
+                }
+                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
+                setTimeout(150, function () {
+                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
+                });
+            }else if(data.mode === 5 && (data.rotate === 'l' || data.rotate === 'r')){
+  		        temp = 0;
+  		        if(data.rotate === 'r'){
+  		            temp = 45;
+                }else{
+                    temp = -45;
+                }
+
+                newx = prevx + temp;
+                all[0].cameraOrbit = newx.toString() + "deg " + newy.toString() +"deg " + newz.toString() + "%";
+
+            }
+  		});
+  		socket.on('disconnect', function(){console.log('byeo')});
+    </script>
+</body>
+
+</html>

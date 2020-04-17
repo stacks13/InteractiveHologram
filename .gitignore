@@ -1,0 +1,7 @@
+*.mp4
+*.rar
+**__pycache__/
+**/.idea/
+**/.ipynb_checkpoints/
+
+
