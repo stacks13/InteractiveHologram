@@ -188,8 +188,8 @@
         <div id="chartContainer" style="position: absolute;  width:15%; height: 30%; top: 10%;" align="center"></div>
         <h2 id="gesture_placeholder" style="position: relative; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Gesture : </h2>
         <h2 id="gesture" style="position: absolute;left:9%; padding: 10px;; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
-        <h2 id="status_placeholder" style="position: absolute; left: 37%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Mode : </h2>
-        <h2 id="status" style="position: absolute; left: 43%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
+        <h2 id="status_placeholder" style="position: absolute; left: 30%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Mode : </h2>
+        <h2 id="status" style="position: absolute; left: 40%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
         <a id="help" href="#" style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;"><h1>?</h1></a>
     </div>
 
@@ -388,7 +388,7 @@
   		    // console.log(data.mode);
 
             if(data.pred) {
-                $('#gesture').text('Gesture: ' +  data.pred)
+                $('#gesture').text(data.pred)
             }else{
                 $('#gesture').text('')
             }
@@ -399,7 +399,7 @@
             // console.log(data.pred);
 
             if(menu === 'rps'){
-                $('#mode').text('');
+                $('#status').text('');
   		        return;
             }
 
@@ -413,28 +413,28 @@
             }
 
             if(data.mode===1){
-                $('#mode').text('Mode: Horizontal Rotate Mode');
+                $('#status').text('Horizontal Rotate Mode');
             }else if(data.mode===2){
-                $('#mode').text('Mode: Vertical Rotate Mode');
+                $('#status').text('Vertical Rotate Mode');
             }else if(data.mode===3){
-                $('#mode').text('Mode: Zoom Mode');
+                $('#status').text('Zoom Mode');
             }else if(data.mode===4){
-                $('#mode').text('Mode: Rotate and Zoom mode');
+                $('#status').text('Rotate and Zoom mode');
+            // }else if(data.mode===5){
+
             }else if(data.mode===5){
-                $('#mode').text('Mode: Quick Rotate Mode');
-            }else if(data.mode===8){
-                $('#mode').text('Mode: Move XZ Mode');
-            }else if(data.mode===9){
-                $('#mode').text('Mode: Move Y Mode');
+                $('#status').text('Move XZ Mode');
+            }else if(data.mode===6){
+                $('#status').text('Move Y Mode');
             }else{
-                $('#mode').text('Mode: Idle');
+                $('#status').text('Idle');
             }
 
             newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
             newy = prevy = parseFloat(all[0].cameraOrbit.split(' ')[1].split('deg')[0]);
             newz = prevz = parseInt(all[0].cameraOrbit.split(' ')[2].split('%')[0]);
 
-            if(data.mode === 8 || data.mode === 9){
+            if(data.mode === 5 || data.mode === 6){
                 if(all[0].cameraTarget === 'auto auto auto'){
                     initial_target_val = Math.sqrt(all[0].getCameraTarget().x**2 + all[0].getCameraTarget().y**2 + all[0].getCameraTarget().z**2);
                 }
@@ -481,18 +481,18 @@
                 setTimeout(150, function () {
                     all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
                 });
-            }else if(data.mode === 5 && (data.rotate === 'l' || data.rotate === 'r')){
-  		        temp = 0;
-  		        if(data.rotate === 'r'){
-  		            temp = 45;
-                }else{
-                    temp = -45;
-                }
+            // }else if(data.mode === 5 && (data.rotate === 'l' || data.rotate === 'r')){
+  		  //       temp = 0;
+  		  //       if(data.rotate === 'r'){
+  		  //           temp = 45;
+            //     }else{
+            //         temp = -45;
+            //     }
+            //
+            //     newx = prevx + temp;
+            //     all[0].cameraOrbit = newx.toString() + "deg " + newy.toString() +"deg " + newz.toString() + "%";
 
-                newx = prevx + temp;
-                all[0].cameraOrbit = newx.toString() + "deg " + newy.toString() +"deg " + newz.toString() + "%";
-
-            }else if(data.mode === 8 && (data.x !== 'undefined' && data.y !== 'undefined')){
+            }else if(data.mode === 5 && (data.x !== 'undefined' && data.y !== 'undefined')){
   		        target = all[0].getCameraTarget()
                 newx = prevx = parseFloat(target.x);
                 newy = prevy = parseFloat(target.y);
@@ -507,7 +507,7 @@
 
                 all[0].cameraTarget = newx.toString() + "m " + newy.toString() +"m " + newz.toString() + "m";
 
-            }else if(data.mode === 9 && (data.y !== 'undefined')){
+            }else if(data.mode === 6 && (data.y !== 'undefined')){
   		        target = all[0].getCameraTarget()
                 newx = prevx = parseFloat(target.x);
                 newy = prevy = parseFloat(target.y);
