@@ -12,12 +12,13 @@ The objective of the project is to make use of the key points of the hand genera
 <img src='https://user-images.githubusercontent.com/16173641/81602480-5079a080-93ea-11ea-886a-641cacb1c12e.png'></img>
 
 ### Working
-<iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/MbDPa4L7WHs" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 Interactive Hologram Demo: https://www.youtube.com/watch?v=MbDPa4L7WHs
 
 Hologram Hardware can be constructed according to https://www.youtube.com/watch?v=MrgGXQvAuR4
 
 ### Reqirements
+Tested on CUDA-enabled GPU (Nvidia GTX 1050 and 1660Ti). *Code makes use of CUDA*
+
 - PyTorch
 - Tensorflow 2.x
 - OpenCV 4.2.0
@@ -27,6 +28,7 @@ Hologram Hardware can be constructed according to https://www.youtube.com/watch?
 - Seaborn
 - Numba
 - Sklearn
+- CUDA Toolkit 10.x
 
 *`requirements.txt` has all packages from the conda environment*
 
