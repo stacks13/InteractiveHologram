@@ -2,535 +2,514 @@
 <html>
 
 <head>
-    <title> </title>
-    <style type="text/css">
-        @import url('https://fonts.googleapis.com/css?family=Overpass+Mono:600');
-        /**, *::before, *::after {*/
-        /*    margin: 0;*/
-        /*    padding: 0;*/
-        /*    box-sizing: inherit;*/
-        /*}*/
-        /*body {*/
-        /*    display: flex;*/
-        /*    box-sizing: border-box;*/
-        /*    background-color: hsl(210, 5%, 12%);*/
-        /*}*/
-        svg {
-            margin: auto;
-            /*width: 100vmin;*/
-        }
-        g > text {
-            text-anchor: middle;
-            font-size: 400px;
-            font-family: Overpass Mono, monospace;
-            fill: hsl(210, 100%, 75%);
-            opacity: 0;
-            animation-name: opac;
-            animation-duration: 3s;
-            animation-timing-function: linear;
-            animation-iteration-count: 1;
-        }
-        g > text:nth-child(1) { animation-delay: 0s; }
-        g > text:nth-child(2) { animation-delay: 1s; }
-        g > text:nth-child(3) { animation-delay: 2s; }
-        g > text:nth-child(4) { animation-delay: 3s; }
+  <title></title>
+  <style type="text/css">
+    @import url('https://fonts.googleapis.com/css?family=Overpass+Mono:600');
+    svg {
+      margin: auto;
+      /*width: 100vmin;*/
+    }
 
-        @keyframes opac {
-            0% { opacity: 0; }
-            7.5% { opacity: 1; }
-            10% { opacity: 1; }
-            15% { opacity: 0; }
-            100% { opacity: 0; }
-        }
+    g > text {
+      text-anchor: middle;
+      font-size: 400px;
+      font-family: Overpass Mono, monospace;
+      fill: hsl(210, 100%, 75%);
+      opacity: 0;
+      animation-name: opac;
+      animation-duration: 3s;
+      animation-timing-function: linear;
+      animation-iteration-count: 1;
+    }
 
-        body{
-            /*transform: scaleX(-1);*/
-    		margin: 0;
-            font-family: "Segoe UI";
-    	}
-        #main {
-            width: 100%;
-            height: 100%;
-            grid-area: demo;
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            flex: 1;
-            display: flex;
-            border: 0px solid #555;
-            background: black;
-        }
-        
-        model-viewer {
-            width: 100%;
-            height: 100%;
-        }
-        
-        #left {
-            width: 50%;
-            height: 50%;
-            
-			margin-top: auto;
-			margin-bottom: auto; 
-			position: relative;        
-            transform: rotateZ(-90deg) translateY(50%);
-        }
-        
-        #top {
-            width: 100%;
-            height: 100%;
-        	/*margin: auto 0;*/
-        	position: absolute;
-            /*transform: translateX(50%);*/
-        }
-        
-        #bottom {
-            width: 50%;
-            height: 50%;
+    g > text:nth-child(1) {
+      animation-delay: 0s;
+    }
 
-            /*margin: auto 0;*/
-            margin-top: 50vh;
-            position: absolute;
-            transform: rotateZ(180deg) translateX(-50%);
-        }
+    g > text:nth-child(2) {
+      animation-delay: 1s;
+    }
 
+    g > text:nth-child(3) {
+      animation-delay: 2s;
+    }
 
-        
-        #right {
-            width: 50%;
-            height: 50%;
-            
-			margin-top: auto;
-			margin-bottom: auto; 
-			position: relative;        
-            transform: rotateZ(90deg) translateY(50%);
-        }
-    </style>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    g > text:nth-child(4) {
+      animation-delay: 3s;
+    }
 
+    @keyframes opac {
+      0% {
+        opacity: 0;
+      }
+      7.5% {
+        opacity: 1;
+      }
+      10% {
+        opacity: 1;
+      }
+      15% {
+        opacity: 0;
+      }
+      100% {
+        opacity: 0;
+      }
+    }
+
+    body {
+      /*transform: scaleX(-1);*/
+      margin: 0;
+      font-family: "Segoe UI";
+    }
+
+    #main {
+      width: 100%;
+      height: 100%;
+      grid-area: demo;
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      flex: 1;
+      display: flex;
+      border: 0px solid #555;
+      background: black;
+    }
+
+    model-viewer {
+      width: 100%;
+      height: 100%;
+    }
+
+    #top {
+      width: 100%;
+      height: 100%;
+      /*margin: auto 0;*/
+      position: absolute;
+      /*transform: translateX(50%);*/
+    }
+
+  </style>
+  <meta content="width=device-width, initial-scale=1" name="viewport">
+  <link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="model-viewer.js" type="module"></script>
+  <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+  <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
 </head>
 
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<div id="main">
 
-    <script type="module" src="model-viewer.js"></script>
-    <script type="module" src="canvasjs.min.js"></script>
-    <script nomodule src="https://unpkg.com/@google/model-viewer/dist/model-viewer-legacy.js"></script>
-    <div id="main">
+  <div id="top">
+    <model-viewer alt="A 3D model of an astronaut" background-color="unset" src="models/apples.glb"></model-viewer>
+  </div>
 
-    	<div id="top">
-        <model-viewer src="models/apples.glb" alt="A 3D model of an astronaut" background-color="unset"></model-viewer>
-    	</div>
+  <div id="helptext"
+       style="display:none; position: absolute; border-radius: 10px; width: 50%; height: 75%; left: 25%; top: 12%; background: white;">
 
-        <div id="helptext" style="display:none; position: absolute; border-radius: 10px; width: 50%; height: 75%; left: 25%; top: 12%; background: white;">
-
-            <div id="closehelp" style="position:absolute;align-self: end; font-size: 30px; left: 95%; width: 50px; height: 50px;" >&times;</div>
-
-            <h1 align="center" style="margin-top: 20px;">Interactive Hologram</h1>
-            <b><p align="center">By</p></b>
-            <b><p align="center">Sahil Nirkhe  &  Daniel Lobo</p></b>
-
-            <table align="center" border="1" cellspacing="0" cellpadding="5">
-                <thead>
-                    <td>Number</td>
-                    <td>Description</td>
-                </thead>
-               	<tbody>
-                    <tr>
-                        <td>1</td>
-                        <td>DNA Model (By Daniel Lobo)</td>
-                    </tr>
-                    <tr>
-                        <td>2</td>
-                        <td>Rocket Model</td>
-                    </tr>
-                    <tr>
-                        <td>3</td>
-                        <td>Rotating Jet Engine Model</td>
-                    </tr>
-                    <tr>
-                        <td>4</td>
-                        <td>Curiosity Rover Model</td>
-                    </tr>
-                    <tr>
-                        <td>5</td>
-                        <td>Covid-19 Model</td>
-                    </tr>
-                    <tr>
-                        <td>6</td>
-                        <td>Rock, paper, scissors Game</td>
-                    </tr>
-                </tbody>
-            </table>
-<!--            <p style="width: 100%; padding: 20px;">Textxy</p>-->
-        </div>
-
-        <div style="position: absolute; left: 40%; top: 30%; display: none;" id="cdcontainer">
-            <svg viewBox="-500 -500 1000 1000" width="100%" height="100%" preserveAspectRatio="xMidYMin slice">
-                <defs>
-                    <filter id="goo">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur"></feGaussianBlur>
-                        <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -5" result="goo"></feColorMatrix>
-                        <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
-                    </filter>
-                </defs>
-                <circle fill="hsla(0, 100%, 50%, 0.25)" cx="0" cy="0" r="300"></circle>
-                <g filter="url(#goo)" id="countdown">
-                    <text x="0" y="150">3</text>
-                    <text x="0" y="150">2</text>
-                    <text x="0" y="150">1</text>
-                    <text x="0" y="150">GO</text>
-                </g>
-            </svg>
-        </div>
-        <div id="chartContainer" style="position: absolute;  width:15%; height: 30%; top: 10%;" align="center"></div>
-        <h2 id="gesture_placeholder" style="position: relative; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Gesture : </h2>
-        <h2 id="gesture" style="position: absolute;left:9%; padding: 10px;; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
-        <h2 id="status_placeholder" style="position: absolute; left: 30%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Mode : </h2>
-        <h2 id="status" style="position: absolute; left: 40%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;" align="center">Idle</h2>
-        <a id="help" href="#" style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;"><h1>?</h1></a>
+    <div id="closehelp"
+         style="position:absolute;align-self: end; font-size: 30px; left: 95%; width: 50px; height: 50px;">&times;
     </div>
 
+    <h1 align="center" style="margin-top: 20px;">Interactive Hologram</h1>
+    <b><p align="center">By</p></b>
+    <b><p align="center">Sahil Nirkhe & Daniel Lobo</p></b>
+
+    <table align="center" border="1" cellpadding="5" cellspacing="0">
+      <thead>
+      <td>Number</td>
+      <td>Description</td>
+      </thead>
+      <tbody>
+      <tr>
+        <td>0</td>
+        <td>Apples (By Daniel Lobo)</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>DNA Model (By Daniel Lobo)</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>Rocket Model</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>Rotating Jet Engine Model</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>Curiosity Rover Model</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>Covid-19 Model</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>Horse Model</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>Rock, paper, scissors Game</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div id="cdcontainer" style="position: absolute; left: 40%; top: 30%; display: none;">
+    <svg height="100%" preserveAspectRatio="xMidYMin slice" viewBox="-500 -500 1000 1000" width="100%">
+      <defs>
+        <filter id="goo">
+          <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+          <feColorMatrix in="blur" mode="matrix" result="goo"
+                         values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 20 -5"></feColorMatrix>
+          <feComposite in="SourceGraphic" in2="goo" operator="atop"></feComposite>
+        </filter>
+      </defs>
+      <circle cx="0" cy="0" fill="hsla(0, 100%, 50%, 0.25)" r="300"></circle>
+      <g filter="url(#goo)" id="countdown">
+        <text x="0" y="150">3</text>
+        <text x="0" y="150">2</text>
+        <text x="0" y="150">1</text>
+        <text x="0" y="150">GO</text>
+      </g>
+    </svg>
+  </div>
+  <div align="center" id="chartContainer" style="position: absolute;  width:15%; height: 30%; top: 10%;"></div>
+  <h2 align="center"
+      id="gesture_placeholder"
+      style="position: relative; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;">Gesture
+    : </h2>
+  <h2 align="center"
+      id="gesture"
+      style="position: absolute;left:9%; padding: 10px;; color: white; font-family: 'Segoe UI'; text-decoration: none;">
+    Idle</h2>
+  <h2 align="center"
+      id="status_placeholder"
+      style="position: absolute; left: 30%; width: 20%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;">
+    Mode : </h2>
+  <h2 align="center"
+      id="status"
+      style="position: absolute; left: 40%; width: 30%; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;">
+    Idle</h2>
+  <a href="#" id="help"
+     style="position: absolute; left: 95vw; padding: 10px; color: white; font-family: 'Segoe UI'; text-decoration: none;">
+    <h1>?</h1></a>
+</div>
 
 
+<script type="text/javascript">
 
-    <script type="text/javascript">
-
-        function mode(array)
-        {
-            if(array.length == 0)
-                return null;
-            var modeMap = {};
-            var maxEl = array[0], maxCount = 1;
-            for(var i = 0; i < array.length; i++)
-            {
-                var el = array[i];
-                if(modeMap[el] == null)
-                    modeMap[el] = 1;
-                else
-                    modeMap[el]++;
-                if(modeMap[el] > maxCount)
-                {
-                    maxEl = el;
-                    maxCount = modeMap[el];
-                }
+    function mode(array) {
+        if (array.length === 0)
+            return null;
+        var modeMap = {};
+        var maxEl = array[0], maxCount = 1;
+        for (var i = 0; i < array.length; i++) {
+            var el = array[i];
+            if (modeMap[el] == null)
+                modeMap[el] = 1;
+            else
+                modeMap[el]++;
+            if (modeMap[el] > maxCount) {
+                maxEl = el;
+                maxCount = modeMap[el];
             }
-            return maxEl;
         }
+        return maxEl;
+    }
 
-        var pred = Array(10);
-        var status = document.getElementById('status');
+    var pred = Array(10);
+    var status = document.getElementById('status');
 
-        function animate_countdown(){
-            all[0].src = 'models/Untitled.glb';
-            document.getElementById('cdcontainer').style.display = "";
-            cd = document.getElementById('countdown');
-            cd.addEventListener('animationend', function () {
-                document.getElementById('cdcontainer').style.display = "none";
-                z = Math.floor(Math.random()*100)%3;
-                if(z===0){
-                    all[0].src = 'models/Rock/rock.gltf';
-                }else if(z===1){
-                    all[0].src = 'models/Scissors/scissors.gltf';
-                }else{
-                    all[0].src = 'models/Paper/paper.glb';
-                }
-
-                setTimeout(function () {
-                    p1 = mode(pred);
-                    console.log('timeout ' + z + p1);
-                    if((p1 === 'thumbs_up' && z === 0) || (p1 === '2_finger' && z === 1) || (p1 === '5_finger' && z === 2)){
-                        $('#status').text('Tie');
-                    }else if((p1 === 'thumbs_up' && z === 1) || (p1 === '2_finger' && z === 2) || (p1 === '5_finger' && z === 0)){
-                        $('#status').text('You win');
-                    }else{
-                        $('#status').text('I win');
-                    }
-                }, 200);
-
-                window.t = setTimeout(function () {
-                    if(menu!=='rps'){
-                        clearTimeout(window.t);
-                        return;
-                    }
-                    animate_countdown();
-                    $('#status').text('');
-
-                }, 5000);
-            });
-        }
-
-        document.getElementById('help').onclick = ev => {
-            document.getElementById('helptext').style.display = "";
-        };
-
-        document.getElementById('closehelp').onclick = ev => {
-            document.getElementById('helptext').style.display = 'none';
-        };
-
-        var menu = 'model';
-
-        document.addEventListener("keypress", function onEvent(event) {
-            if (event.key === "1") {
-                menu = 'model';
-                all[0].src = 'models/DNA_1.glb';
-            }else if (event.key === "2") {
-                menu = 'model';
-                all[0].src = 'models/Falcon/scene.gltf'
-            }else if (event.key === "3") {
-                menu = 'model';
-                all[0].src = 'models/Rotating jet engine.glb'
-            }else if (event.key === "4") {
-                menu = 'model';
-                all[0].src = 'models/Curiosity.glb'
-            }else if (event.key === "5") {
-                menu = 'model';
-                all[0].src = 'models/covid.glb'
-            }else if (event.key === "6") {
-                menu = 'model';
-                all[0].src = 'models/Horse.glb'
-            }else if (event.key === "7") {
-                // document.getElementById('cdcontainer').style.display = "";
-                // all[0].src = '';
-                if(menu!== 'rps') {
-                    menu = 'rps';
-                    window.animator = setInterval(function () {
-                        newx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
-                        newx += 2;
-                        all[0].cameraOrbit = newx.toString() + "deg 90deg 105%";
-                    }, 100);
-                    animate_countdown();
-                }
-                // all[0].src = 'scene.gltf'
-            }else if (event.key === "p") {
-                menu = 'model';
-                if(all[0].paused){
-                    all[0].play();
-                }else{
-                    all[0].pause();
-                }
-            }else if(event.key === "r"){
-                all[0].cameraOrbit = init_position;
+    function animate_countdown() {
+        model_viewer.src = 'models/Untitled.glb';
+        document.getElementById('cdcontainer').style.display = "";
+        cd = document.getElementById('countdown');
+        cd.addEventListener('animationend', function () {
+            document.getElementById('cdcontainer').style.display = "none";
+            z = Math.floor(Math.random() * 100) % 3;
+            if (z === 0) {
+                model_viewer.src = 'models/Rock/rock.gltf';
+            } else if (z === 1) {
+                model_viewer.src = 'models/Scissors/scissors.gltf';
+            } else {
+                model_viewer.src = 'models/Paper/paper.glb';
             }
 
-            if(menu === 'model'){
-                clearInterval(window.animator);
-            }
+            setTimeout(function () {
+                p1 = mode(pred);
+                console.log('timeout ' + z + p1);
+                if ((p1 === 'thumbs_up' && z === 0) || (p1 === '2_finger' && z === 1) || (p1 === '5_finger' && z === 2)) {
+                    $('#status').text('Tie');
+                } else if ((p1 === 'thumbs_up' && z === 1) || (p1 === '2_finger' && z === 2) || (p1 === '5_finger' && z === 0)) {
+                    $('#status').text('You win');
+                } else {
+                    $('#status').text('I win');
+                }
+            }, 200);
+
+            window.t = setTimeout(function () {
+                if (menu !== 'rps') {
+                    clearTimeout(window.t);
+                    return;
+                }
+                animate_countdown();
+                $('#status').text('');
+
+            }, 5000);
         });
-        // bottom = $('#top').clone(true);
-        // bottom.attr('id', 'bottom');
-        // bottom.appendTo('#main');
-        //
-        // left = $('#top').clone(true);
-        // left.attr('id', 'left');
-        // left.appendTo('#main');
-        //
-        // right = $('#top').clone(true);
-        // right.attr('id', 'right');
-        // right.appendTo('#main');
-        all = [
-        		document.getElementById('top').children[0]
-        		];
-        all[0].addEventListener('load', function () {
-            all[0].cameraTarget = 'auto auto auto';
-            all[0].cameraOrbit = init_position;
+    }
+
+    document.getElementById('help').onclick = ev => {
+        document.getElementById('helptext').style.display = "";
+    };
+
+    document.getElementById('closehelp').onclick = ev => {
+        document.getElementById('helptext').style.display = 'none';
+    };
+
+    var menu = 'model';
+
+    document.addEventListener("keypress", function onEvent(event) {
+        if (event.key === "0") {
+            menu = 'model';
+            model_viewer.src = 'models/apples.glb';
+        } else if (event.key === "1") {
+            menu = 'model';
+            model_viewer.src = 'models/DNA_1.glb';
+        } else if (event.key === "2") {
+            menu = 'model';
+            model_viewer.src = 'models/Falcon/scene.gltf'
+        } else if (event.key === "3") {
+            menu = 'model';
+            model_viewer.src = 'models/Rotating jet engine.glb'
+        } else if (event.key === "4") {
+            menu = 'model';
+            model_viewer.src = 'models/Curiosity.glb'
+        } else if (event.key === "5") {
+            menu = 'model';
+            model_viewer.src = 'models/covid.glb'
+        } else if (event.key === "6") {
+            menu = 'model';
+            model_viewer.src = 'models/Horse.glb'
+        } else if (event.key === "7") {
+            if (menu !== 'rps') {
+                menu = 'rps';
+                window.animator = setInterval(function () {
+                    newx = parseFloat(model_viewer.cameraOrbit.split(' ')[0].split('deg')[0]);
+                    newx += 2;
+                    model_viewer.cameraOrbit = newx.toString() + "deg 90deg 105%";
+                }, 100);
+                animate_countdown();
+            }
+        } else if (event.key === "p") {
+            menu = 'model';
+            if (model_viewer.paused) {
+                model_viewer.play();
+            } else {
+                model_viewer.pause();
+            }
+        } else if (event.key === "r") {
+            model_viewer.cameraOrbit = init_position;
+        }
+
+        if (menu === 'model') {
+            clearInterval(window.animator);
+        }
+    });
+
+    window.model_viewer = document.getElementById('top').children[0];
+
+    model_viewer.addEventListener('load', function () {
+        model_viewer.cameraTarget = 'auto auto auto';
+        model_viewer.cameraOrbit = init_position;
+    });
+    var init_position = "0deg 75deg 105%";
+
+    window.onload = function () {
+
+        window.chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            backgroundColor: "#000",
+            axisX: {
+                labelFontColor: "red",
+                labelFontSize: 14,
+            },
+            axisY2: {
+                // title: "Number of Companies"
+                interval: 0.25,
+                maximum: 1,
+                minimum: 0
+
+            },
+            data: [{
+                type: "bar",
+                name: "companies",
+                axisYType: "secondary",
+                color: "#2a00ff",
+                dataPoints: [
+                    {y: 0, label: '1_finger'},
+                    {y: 0, label: '2_finger'},
+                    {y: 0, label: '3_finger'},
+                    {y: 0, label: '4_finger'},
+                    {y: 0, label: '5_finger'},
+                    {y: 0, label: 'okay'},
+                    {y: 0, label: 'thumbs_up'},
+                    {y: 0, label: 'thumbs_down'},
+                    {y: 0, label: 'call'},
+                ]
+            }]
         });
-        var init_position = "0deg 75deg 105%";
+        window.chart.render();
 
-        window.onload = function () {
+    }
+</script>
 
-            window.chart = new CanvasJS.Chart("chartContainer", {
-                animationEnabled: true,
-                backgroundColor: "#000",
-                axisX:{
-                    labelFontColor: "red",
-                    labelFontSize: 14,
-                },
-                axisY2:{
-                    // title: "Number of Companies"
-                    interval: 0.25,
-                    maximum: 1,
-                    minimum: 0
+<script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
+<script type="text/javascript">
+    var socket = io('http://localhost:8080');
+    var initial_target_val;
+    socket.on('connect', function () {
+        socket.emit('front');
+    });
+    start = 0;
+    socket.on('transmit', function (data) {
+        if (data.pred) {
+            $('#gesture').text(data.pred)
+        } else {
+            $('#gesture').text('')
+        }
+        if (pred.length === 10) {
+            pred.shift();
+        }
+        pred.push(data.pred);
 
-                },
-                data: [{
-                    type: "bar",
-                    name: "companies",
-                    axisYType: "secondary",
-                    // fontColor: white,
-                    color: "#2a00ff",
-                    dataPoints: [
-                        {y: 0, label:'1_finger'},
-                        {y: 0, label:'2_finger'},
-                        {y: 0, label:'3_finger'},
-                        {y: 0, label:'4_finger'},
-                        {y: 0, label:'5_finger'},
-                        {y: 0, label:'okay'},
-                        {y: 0, label:'thumbs_up'},
-                        {y: 0, label:'thumbs_down'},
-                        {y: 0, label:'call'},
-                    ]
-                }]
+        if (menu === 'rps') {
+            return;
+        }
+
+        if (mode(pred) === 'call') {
+            if (model_viewer.paused) {
+                model_viewer.play();
+            } else {
+                model_viewer.pause();
+            }
+            while (pred.length) {
+                pred.pop();
+            }
+        }
+
+        if (data.mode === 1) {
+            $('#status').text('Horizontal Rotate Mode');
+        } else if (data.mode === 2) {
+            $('#status').text('Vertical Rotate Mode');
+        } else if (data.mode === 3) {
+            $('#status').text('Zoom Mode');
+        } else if (data.mode === 4) {
+            $('#status').text('Rotate and Zoom mode');
+        } else if (data.mode === 5) {
+            $('#status').text('Move XZ Mode');
+        } else if (data.mode === 6) {
+            $('#status').text('Move Y Mode');
+        } else {
+            $('#status').text('Idle');
+        }
+
+        newx = prevx = parseFloat(model_viewer.cameraOrbit.split(' ')[0].split('deg')[0]);
+        newy = prevy = parseFloat(model_viewer.cameraOrbit.split(' ')[1].split('deg')[0]);
+        newz = prevz = parseInt(model_viewer.cameraOrbit.split(' ')[2].split('%')[0]);
+
+        if (data.mode === 5 || data.mode === 6) {
+            if (model_viewer.cameraTarget === 'auto auto auto') {
+                initial_target_val = Math.sqrt(model_viewer.getCameraTarget().x ** 2 + model_viewer.getCameraTarget().y ** 2 + model_viewer.getCameraTarget().z ** 2);
+            }
+        }
+
+        if (data.mode === 0) {
+
+        } else if (data.mode === 1 && data.x !== 'undefined') {
+            newx = prevx = parseFloat(model_viewer.cameraOrbit.split(' ')[0].split('deg')[0]);
+            if (Math.abs(data.x) < 50) {
+                newx = prevx + data.x * 0.6;
+            }
+            model_viewer.cameraOrbit = ((prevx + newx) / 2).toString() + "deg " + ((newy + prevy) / 2).toString() + "deg " + ((newz + prevz) / 2).toString() + "%";
+            setTimeout(150, function () {
+                model_viewer.cameraOrbit = newx.toString() + "deg " + (newy).toString() + "deg " + newz.toString() + "%";
             });
-            window.chart.render();
+        } else if (data.mode === 2 && data.y !== 'undefined') {
+            if (Math.abs(data.y) < 50) {
+                newy = prevy - data.y * 0.6;
+            }
+            model_viewer.cameraOrbit = ((prevx + newx) / 2).toString() + "deg " + ((newy + prevy) / 2).toString() + "deg " + ((newz + prevz) / 2).toString() + "%";
+            setTimeout(150, function () {
+                model_viewer.cameraOrbit = newx.toString() + "deg " + (newy).toString() + "deg " + newz + "%";
+            });
+        } else if (data.mode === 3 && data.z !== 'undefined') {
+            if (data.z && data.z < 30) {
+                newz = prevz - 0.4 * data.z;
+            }
+            model_viewer.cameraOrbit = ((prevx + newx) / 2).toString() + "deg " + ((newy + prevy) / 2).toString() + "deg " + ((newz + prevz) / 2).toString() + "%";
+            setTimeout(150, function () {
+                model_viewer.cameraOrbit = newx.toString() + "deg " + (newy).toString() + "deg " + newz + "%";
+            });
+        } else if (data.mode === 4 && data.x !== 'undefined') {
+            if (Math.abs(data.x) < 50) {
+                newx = prevx + data.x * 0.6;
+            }
+            if (Math.abs(data.y) < 50) {
+                newy = prevy - data.y * 0.6;
+            }
+            if (data.z && data.z < 30) {
+                newz = prevz - 0.4 * data.z;
+            }
+            model_viewer.cameraOrbit = ((prevx + newx) / 2).toString() + "deg " + ((newy + prevy) / 2).toString() + "deg " + ((newz + prevz) / 2).toString() + "%";
+            setTimeout(150, function () {
+                model_viewer.cameraOrbit = newx.toString() + "deg " + (newy).toString() + "deg " + newz + "%";
+            });
+
+        } else if (data.mode === 5 && (data.x !== 'undefined' && data.y !== 'undefined')) {
+            target = model_viewer.getCameraTarget();
+            newx = prevx = parseFloat(target.x);
+            newy = prevy = parseFloat(target.y);
+            newz = prevz = parseFloat(target.z);
+
+            if (Math.abs(data.x) < 50) {
+                newx = prevx + data.x * 0.005 * window.initial_target_val;
+            }
+            if (Math.abs(data.y) < 50) {
+                newz = prevz - data.y * 0.005 * window.initial_target_val;
+            }
+
+            model_viewer.cameraTarget = newx.toString() + "m " + newy.toString() + "m " + newz.toString() + "m";
+
+        } else if (data.mode === 6 && (data.y !== 'undefined')) {
+            target = model_viewer.getCameraTarget();
+            newx = prevx = parseFloat(target.x);
+            newy = prevy = parseFloat(target.y);
+            newz = prevz = parseFloat(target.z);
+
+            if (Math.abs(data.y) < 50) {
+                newy = prevy - data.y * 0.005 * window.initial_target_val;
+            }
+
+            model_viewer.cameraTarget = newx.toString() + "m " + newy.toString() + "m " + newz.toString() + "m";
 
         }
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/socket.io-client@2/dist/socket.io.js"></script>
-    <script type="text/javascript">
-    	var socket = io('http://localhost:8080');
-    	var initial_target_val;
-  		socket.on('connect', function(){socket.emit('front');});
-  		start = 0;
-  		socket.on('transmit', function(data){
-  		    // console.log(data.mode);
-
-            if(data.pred) {
-                $('#gesture').text(data.pred)
-            }else{
-                $('#gesture').text('')
-            }
-            if(pred.length === 10){
-                pred.shift();
-            }
-            pred.push(data.pred);
-            // console.log(data.pred);
-
-            if(menu === 'rps'){
-                // $('#status').text('');
-  		        return;
-            }
-
-            if(mode(pred) === 'call'){
-                if(all[0].paused){
-                    all[0].play();
-                }else{
-                    all[0].pause();
-                }
-                while (pred.length) { pred.pop(); }
-            }
-
-            if(data.mode===1){
-                $('#status').text('Horizontal Rotate Mode');
-            }else if(data.mode===2){
-                $('#status').text('Vertical Rotate Mode');
-            }else if(data.mode===3){
-                $('#status').text('Zoom Mode');
-            }else if(data.mode===4){
-                $('#status').text('Rotate and Zoom mode');
-            // }else if(data.mode===5){
-
-            }else if(data.mode===5){
-                $('#status').text('Move XZ Mode');
-            }else if(data.mode===6){
-                $('#status').text('Move Y Mode');
-            }else{
-                $('#status').text('Idle');
-            }
-
-            newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
-            newy = prevy = parseFloat(all[0].cameraOrbit.split(' ')[1].split('deg')[0]);
-            newz = prevz = parseInt(all[0].cameraOrbit.split(' ')[2].split('%')[0]);
-
-            if(data.mode === 5 || data.mode === 6){
-                if(all[0].cameraTarget === 'auto auto auto'){
-                    initial_target_val = Math.sqrt(all[0].getCameraTarget().x**2 + all[0].getCameraTarget().y**2 + all[0].getCameraTarget().z**2);
-                }
-            }
-
-  		    if(data.mode === 0){
-
-            }else if(data.mode === 1 && data.x  !== 'undefined'){
-                newx = prevx = parseFloat(all[0].cameraOrbit.split(' ')[0].split('deg')[0]);
-                if(Math.abs(data.x) < 50){
-                    newx = prevx + data.x*0.6;
-                }
-                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
-                setTimeout(150, function () {
-                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz.toString() + "%";
-                });
-            }else if(data.mode === 2 && data.y  !== 'undefined'){
-                if(Math.abs(data.y) < 50){
-                    newy = prevy - data.y*0.6;
-                }
-                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
-                setTimeout(150, function () {
-                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
-                });
-            }else if(data.mode === 3 && data.z  !== 'undefined'){
-                if(data.z && data.z < 30){
-                    newz = prevz - 0.4*data.z;
-                }
-                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
-                setTimeout(150, function () {
-                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
-                });
-            }else if(data.mode === 4 && data.x !== 'undefined'){
-                if(Math.abs(data.x) < 50){
-                    newx = prevx + data.x*0.6;
-                }
-                if(Math.abs(data.y) < 50){
-                    newy = prevy - data.y*0.6;
-                }
-                if(data.z && data.z < 30){
-                    newz = prevz - 0.4*data.z;
-                }
-                all[0].cameraOrbit = ((prevx+newx)/2).toString() + "deg " + ((newy+prevy)/2).toString() +"deg " + ((newz+prevz)/2).toString() + "%";
-                setTimeout(150, function () {
-                    all[0].cameraOrbit = newx.toString() + "deg " + (newy).toString() +"deg " + newz + "%";
-                });
-            // }else if(data.mode === 5 && (data.rotate === 'l' || data.rotate === 'r')){
-  		  //       temp = 0;
-  		  //       if(data.rotate === 'r'){
-  		  //           temp = 45;
-            //     }else{
-            //         temp = -45;
-            //     }
-            //
-            //     newx = prevx + temp;
-            //     all[0].cameraOrbit = newx.toString() + "deg " + newy.toString() +"deg " + newz.toString() + "%";
-
-            }else if(data.mode === 5 && (data.x !== 'undefined' && data.y !== 'undefined')){
-  		        target = all[0].getCameraTarget()
-                newx = prevx = parseFloat(target.x);
-                newy = prevy = parseFloat(target.y);
-                newz = prevz = parseFloat(target.z);
-
-                if(Math.abs(data.x) < 50){
-                    newx = prevx + data.x*0.005*window.initial_target_val;
-                }
-                if(Math.abs(data.y) < 50){
-                    newz = prevz - data.y*0.005*window.initial_target_val;
-                }
-
-                all[0].cameraTarget = newx.toString() + "m " + newy.toString() +"m " + newz.toString() + "m";
-
-            }else if(data.mode === 6 && (data.y !== 'undefined')){
-  		        target = all[0].getCameraTarget()
-                newx = prevx = parseFloat(target.x);
-                newy = prevy = parseFloat(target.y);
-                newz = prevz = parseFloat(target.z);
-
-                if(Math.abs(data.y) < 50){
-                    newy = prevy - data.y*0.005*window.initial_target_val;
-                }
-
-                all[0].cameraTarget = newx.toString() + "m " + newy.toString() +"m " + newz.toString() + "m";
-
-            }
-  		});
-  		socket.on('predictions', function (data) {
-  		    console.log(data);
-  		    for (i=0; i<9; i++){
-  		        window.chart.options.data[0].dataPoints[i].y = data.preds[0][i];
-            }
-            window.chart.render();
-        })
-  		socket.on('disconnect', function(){console.log('byeo')});
-    </script>
+    });
+    socket.on('predictions', function (data) {
+        console.log(data);
+        for (i = 0; i < 9; i++) {
+            window.chart.options.data[0].dataPoints[i].y = data.preds[0][i];
+        }
+        window.chart.render();
+    });
+    socket.on('disconnect', function () {
+        console.log('frontend disconnected')
+    });
+</script>
 </body>
 
 </html>

@@ -1,10 +1,8 @@
 import socketio
 from aiohttp import web
 
-# create a Socket.IO server
 sio = socketio.AsyncServer(cors_allowed_origins='*')
 
-# wrap with ASGI application
 app = web.Application()
 app.add_routes([web.static('/model-viewer/', 'model-viewer/')])
 sio.attach(app)
